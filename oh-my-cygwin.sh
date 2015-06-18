@@ -30,6 +30,11 @@ then
   install "${VIMRC_EXAMPLE}" ~/.vimrc
 fi
 
+if [ ! -f /etc/passwd ]
+then
+  mkpasswd -c | sed -e 'sX/bashX/zshX' | tee -a /etc/passwd
+fi
+
 # install apt-cyg
 install --backup "${APT_CYG}" /bin/apt-cyg
 
